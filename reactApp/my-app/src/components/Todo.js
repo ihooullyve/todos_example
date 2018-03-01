@@ -9,8 +9,10 @@ class Todo extends React.Component {
     }
 
     render(){
+        console.log(this.props)
+        const {id, title} = this.props
         return(
-            <div>Todo Component</div>
+            <div>{title}</div>
         )
     }
 }

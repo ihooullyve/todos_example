@@ -1,5 +1,7 @@
 import React from 'react'
 import Todo from '../components/Todo'
+import { connect } from 'react-redux'
+import { listTodoApi } from '../actions/index'
 
 class TodoList extends React.Component {
     constructor(props){
@@ -7,18 +9,31 @@ class TodoList extends React.Component {
         this.state = {
 
         }
+        this.initData = this.initData.bind(this);
+        this.initData()
+    }
+
+    initData = () => {
+        this.props.dispatch(listTodoApi())
     }
 
     render(){
+        const {todos } = this.props.todos
+        console.log(todos)
         return(
             <div>
-                <h3>List Todo</h3>
-                <Todo />
-                <Todo />
-                <Todo />
+                {
+                    todos.map((v,k) => <Todo key={k} {...v} /> )
+                }
             </div>
         )
     }
 }
 
-export default TodoList
+const mapStateToProps = state => {
+    return{
+        todos : state.todos
+    }
+}
+
+export default connect(mapStateToProps)(TodoList)

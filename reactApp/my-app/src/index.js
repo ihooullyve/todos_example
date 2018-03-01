@@ -1,10 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import './index.css';
-// import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+// import redux
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+// reducers
+import reducer from './reducers'
 // import component
 import TodoList from './containers/TodoList'
+import store from './store'
 
-ReactDOM.render(<TodoList />, document.getElementById('root'));
+// const store = createStore(reducer)
+
+ReactDOM.render(
+    <Provider store={store}>
+        <TodoList />
+    </Provider>
+    , document.getElementById('root')
+);
 registerServiceWorker();
