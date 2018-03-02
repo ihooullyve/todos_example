@@ -6,13 +6,20 @@ class Todo extends React.Component {
         this.state = {
 
         }
+        this.deleteTodo = this.deleteTodo.bind(this)
+    }
+
+    deleteTodo = (id) => {
+        this.props.handleDelete(id)
     }
 
     render(){
-        console.log(this.props)
         const {id, title} = this.props
         return(
-            <div>{title}</div>
+            <li>
+                <span style={{ marginRight: '30px' }}>{title}</span>
+                <button onClick={e => this.deleteTodo(id)} >x</button>
+            </li>
         )
     }
 }

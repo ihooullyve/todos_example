@@ -1,6 +1,6 @@
 import React from 'react'
 import Todo from '../components/Todo'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 import { listTodoApi } from '../actions/index'
 
 class TodoList extends React.Component {
@@ -9,31 +9,20 @@ class TodoList extends React.Component {
         this.state = {
 
         }
-        this.initData = this.initData.bind(this);
-        this.initData()
-    }
-
-    initData = () => {
-        this.props.dispatch(listTodoApi())
     }
 
     render(){
-        const {todos } = this.props.todos
-        console.log(todos)
+        const { todos, handleDelete } = this.props
         return(
-            <div>
+            <ol>
                 {
-                    todos.map((v,k) => <Todo key={k} {...v} /> )
+                    todos && todos.map((v,k) =>
+                        <Todo key={k} {...v} handleDelete={handleDelete} />
+                     )
                 }
-            </div>
+            </ol>
         )
     }
 }
 
-const mapStateToProps = state => {
-    return{
-        todos : state.todos
-    }
-}
-
-export default connect(mapStateToProps)(TodoList)
+export default TodoList

@@ -7,14 +7,14 @@ import { Provider } from 'react-redux'
 // reducers
 import reducer from './reducers'
 // import component
-import TodoList from './containers/TodoList'
+import TodosApp from './containers/TodosApp'
 import store from './store'
 
 // const store = createStore(reducer)
 
 ReactDOM.render(
     <Provider store={store}>
-        <TodoList />
+        <TodosApp />
     </Provider>
     , document.getElementById('root')
 );

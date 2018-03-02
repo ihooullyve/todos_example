@@ -1,26 +1,26 @@
-const data = [
-    {
-        title : 'aaaaa'
-    },
-    {
-        title : 'bbbbbb'
-    }
-]
-
 const initialState = {
-    todos : []
+    todos : [],
+    loadPage : false,
 }
 
 const todos = (state=initialState, action) => {
     switch(action.type){
         case 'ADD_TODO':
-            return 1
+            state.todos.push(action.data)
+            return {
+                ...state,
+                todo : action.data
+            }
         case 'LIST_TODO':
-            console.log('===> LIST_TODO')
-            console.log(action)
             return {
                 ...state,
                 todos : action.data
+            }
+        case 'DELETE_TODO':
+            console.log(action)
+            return {
+                ...state,
+                loadPage : true
             }
         default:
             return state
